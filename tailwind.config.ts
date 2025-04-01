@@ -1,11 +1,12 @@
-import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
+import defaultTheme from "tailwindcss/defaultTheme";
 import { withUt } from "uploadthing/tw";
 
-import animate from "tailwindcss-animate";
+const { fontFamily } = defaultTheme;
 
 export default withUt({
-    darkMode: ["class"],
+    darkMode: ["class", "dark"],
     content: ["./src/**/*.tsx"],
     theme: {
         extend: {

@@ -8,7 +8,9 @@ pnpm = "latest"
 _.path = ["{{ vars.node_modules_bin_dir }}"]
 PROJECT_NAME = "{{ config_root | basename }}"
 BIN_PATH = "{{ vars.node_modules_bin_dir }}"
-NODE_ENV = "{{ env.NODE_ENV | default(value='development') }}"
+# NODE_ENV = "{{ env.NODE_ENV | default(value='development') }}"
+# NODE_ENV = "production"
+NODE_PACKAGE_MANAGER = "pnpm"
 
 [vars]
 node_modules_dir = "{{ config_root }}/node_modules"
