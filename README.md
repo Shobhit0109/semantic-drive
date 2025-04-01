@@ -29,6 +29,6 @@ Check if user is owner before showing the folder page.
 
 You get the idea. Maybe check out my last tutorial?
 
-### Toasts!
+### Toasts
 
 ### Gray out a row while it's being deleted
