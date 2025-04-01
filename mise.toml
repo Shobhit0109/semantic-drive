@@ -1,0 +1,47 @@
+min_version = "2025.3.6"
+
+[tools]
+node = "{{ env['NODE_VERSION'] | default(value='22.14.0') }}"
+pnpm = "latest"
+
+[env]
+_.path = ["{{ vars.node_modules_bin_dir }}"]
+PROJECT_NAME = "{{ config_root | basename }}"
+BIN_PATH = "{{ vars.node_modules_bin_dir }}"
+NODE_ENV = "{{ env.NODE_ENV | default(value='development') }}"
+
+[vars]
+node_modules_dir = "{{ config_root }}/node_modules"
+node_modules_bin_dir = "{{ vars.node_modules_dir }}/.bin"
+
+[settings]
+experimental = true
+
+[hooks]
+enter = "mise run build"
+
+[tasks.build]
+hide = true
+silent = true
+run = """
+# mise install
+mise install &> /dev/null
+"""
+
+[tasks.info]
+description = "Print project information"
+run = '''
+echo "Project: $PROJECT_NAME"
+echo "NODE_ENV: $NODE_ENV"
+'''
+
+[tasks.pnpm-install]
+description = 'Installs dependencies with pnpm'
+run = 'pnpm install'
+sources = ['package.json', 'pnpm-lock.yaml', 'mise.toml']
+outputs = ['node_modules/.pnpm/lock.yaml']
+
+[tasks.dev]
+description = 'Calls your dev script in `package.json`'
+run = 'node --run dev'
+depends = ['pnpm-install']
