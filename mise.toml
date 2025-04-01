@@ -1,11 +1,15 @@
 min_version = "2025.3.0"
 
 [tools]
+"cargo:node-size-analyzer" = "latest"
 node = "{{ env['NODE_VERSION'] | default(value='22.14.0') }}"
 pnpm = "latest"
 
+[alias]
+
+
 [env]
-_.path = ["{{ vars.node_modules_bin_dir }}"]
+_.path = ["{{ vars.mise_bin_dir }}", "{{ vars.node_modules_bin_dir }}"]
 PROJECT_NAME = "{{ config_root | basename }}"
 BIN_PATH = "{{ vars.node_modules_bin_dir }}"
 # NODE_ENV = "{{ env.NODE_ENV | default(value='development') }}"
@@ -15,6 +19,7 @@ NODE_PACKAGE_MANAGER = "pnpm"
 [vars]
 node_modules_dir = "{{ config_root }}/node_modules"
 node_modules_bin_dir = "{{ vars.node_modules_dir }}/.bin"
+mise_bin_dir = "{{ config_root }}/.mise_bin"
 
 [settings]
 experimental = true
@@ -28,6 +33,13 @@ silent = true
 run = """
 # mise install
 mise install &> /dev/null
+
+rm -rf {{ vars.mise_bin_dir }}
+mkdir -p {{ vars.mise_bin_dir }}
+
+echo 'dust -d 2 --min-size 1MB --reverse ./node_modules' > {{ vars.mise_bin_dir }}/node_size_analyzer
+
+chmod -R +x {{ vars.mise_bin_dir }}
 """
 
 [tasks.info]
