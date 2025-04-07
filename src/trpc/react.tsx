@@ -8,7 +8,7 @@ import { useState } from "react";
 import superJson from "superjson";
 
 import type { AppRouter } from "~/server/api/root";
-import { createQueryClient } from "./query-client.js";
+import { createQueryClient } from "./query-client";
 
 let clientQueryClientSingleton: QueryClient | undefined = undefined;
 const getQueryClient = () => {
@@ -38,7 +38,9 @@ export type RouterInputs = inferRouterInputs<AppRouter>;
  */
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
 
-export function TRPCReactProvider(props: { children: React.ReactNode }) {
+export function TRPCReactProvider(
+    props: Readonly<{ children: React.ReactNode }>,
+) {
     const queryClient = getQueryClient();
 
     const [trpcClient] = useState(() =>
