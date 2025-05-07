@@ -1,44 +1,68 @@
 {
+    "extends": "@tsconfig/next/tsconfig.json", // bring in Next.js defaults
     "compilerOptions": {
-        /* Base Options: */
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "target": "es2022",
-        "allowJs": true,
-        "resolveJsonModule": true,
-        "moduleDetection": "force",
-        "isolatedModules": true,
-        "verbatimModuleSyntax": true,
-        /* Strictness */
-        "strict": true,
-        "noUncheckedIndexedAccess": true,
-        "checkJs": true,
-        /* Bundled projects */
-        "lib": ["dom", "dom.iterable", "ES2022"],
-        "noEmit": true,
+        /***** Core Options *****/
+        "target": "ES2022", // modern JS output
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "jsx": "preserve",
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "incremental": true,
-        /* Path Aliases */
+        "verbatimModuleSyntax": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        /***** Strictness *****/
+        "strict": true, // all strict flags on
+        // "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        // "exactOptionalPropertyTypes": true,
+        "alwaysStrict": true,
+        "useDefineForClassFields": true,
+        // /***** Diagnostics & Emitted Files *****/
+        "allowJs": true, // only TS/TSX in dev
+        "checkJs": true,
+        "skipLibCheck": true, // speed up by skipping type checks on deps
+        "noEmit": true, // defer all emitting to Next.js/SWC
+        "incremental": true, // incremental builds
+        /***** Paths & Base URL *****/
         "baseUrl": ".",
         "paths": {
-            "~/*": ["./src/*"]
-        }
+            "~/*": [
+                "src/*"
+            ], // shorter imports from src
+            "@components/*": [
+                "src/components/*"
+            ] // example additional alias
+        },
+        /***** Type Roots & Declaration *****/
+        "typeRoots": [
+            "./types",
+            "./node_modules/@types"
+        ],
+        "resolveJsonModule": true,
+        /***** Others *****/
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "moduleDetection": "force"
     },
     "include": [
-        ".eslintrc.cjs",
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.cjs",
-        "**/*.js",
+        "next-env.d.ts", // Next.js types
+        "src/**/*.ts",
+        "src/**/*.tsx",
         ".next/types/**/*.ts"
     ],
-    "exclude": ["node_modules"]
+    "exclude": [
+        "node_modules",
+        "build",
+        "public",
+        "**/*.stories.tsx", // Storybook stories
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        ".next"
+    ]
 }

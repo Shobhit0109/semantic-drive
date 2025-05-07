@@ -3,6 +3,7 @@ min_version = "2025.3.0"
 [tools]
 "cargo:node-size-analyzer" = "latest"
 node = "{{ env['NODE_VERSION'] | default(value='22.14.0') }}"
+"npm:vlt" = "latest"
 pnpm = "10.7.1"
 
 [alias]
@@ -37,7 +38,7 @@ mise install &> /dev/null
 rm -rf {{ vars.mise_bin_dir }}
 mkdir -p {{ vars.mise_bin_dir }}
 
-echo 'dust -d 2 --min-size 1MB --reverse ./node_modules' > {{ vars.mise_bin_dir }}/node_size_analyzer
+# echo 'dust -d 2 --min-size 1MB --reverse ./node_modules' > {{ vars.mise_bin_dir }}/node_size_analyzer
 
 chmod -R +x {{ vars.mise_bin_dir }}
 """
