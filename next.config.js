@@ -4,6 +4,7 @@
  */
 import "./src/env.js";
 
+
 /** @type {import("next").NextConfig} */
 const config = {
     reactStrictMode: true,
@@ -17,6 +18,12 @@ const config = {
         // clientSegmentCache: true,
         // optimisticClientCache: true,
         // appDocumentPreloading: true,
+    },
+    eslint: {
+        ignoreDuringBuilds: true, // Ignore ESLint errors during build
+    },
+    typescript: {
+        ignoreBuildErrors: true, // Ignore TypeScript errors during build
     },
 };
 

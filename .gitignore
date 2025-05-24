@@ -47,3 +47,6 @@ yarn-error.log*
 
 # Mise
 **/.mise_bin/
+
+# Local Netlify folder
+.netlify

@@ -18,3 +18,5 @@ trim_trailing_whitespace=false
 [MakeFile]
 indent_style=tab
 
+[*.{yaml, yml}]
+indent_size=2

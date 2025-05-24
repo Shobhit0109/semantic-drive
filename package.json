@@ -26,6 +26,7 @@
     "description": "Semantic Drive is a web application that allows users to upload and share their driving experiences, including routes, photos, and comments.",
     "devDependencies": {
         "@eslint/eslintrc": "^3.3.1",
+        "@netlify/plugin-nextjs": "^5.11.2",
         "@tailwindcss/postcss": "^4.1.7",
         "@trivago/prettier-plugin-sort-imports": "^5.2.2",
         "@types/node": "^22.15.21",
