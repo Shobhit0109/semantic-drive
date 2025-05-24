@@ -3,11 +3,7 @@ min_version = "2025.3.0"
 [tools]
 "cargo:node-size-analyzer" = "latest"
 node = "{{ env['NODE_VERSION'] | default(value='22.14.0') }}"
-"npm:vlt" = "latest"
 pnpm = "10.7.1"
-
-[alias]
-
 
 [env]
 _.path = ["{{ vars.mise_bin_dir }}", "{{ vars.node_modules_bin_dir }}"]

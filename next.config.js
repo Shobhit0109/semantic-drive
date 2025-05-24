@@ -12,8 +12,6 @@ const config = {
     },
     experimental: {
         viewTransition: true,
-        // ppr: "incremental",
-        // dynamicIO: true,
         preloadEntriesOnStart: true,
         clientSegmentCache: true,
         optimisticClientCache: true,
