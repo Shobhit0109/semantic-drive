@@ -7,15 +7,16 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const config = {
     reactStrictMode: true,
+    productionBrowserSourceMaps: true,
     logging: {
         fetches: { hmrRefreshes: true, fullUrl: true },
     },
     experimental: {
-        viewTransition: true,
-        preloadEntriesOnStart: true,
-        clientSegmentCache: true,
-        optimisticClientCache: true,
-        appDocumentPreloading: true,
+        // viewTransition: true,
+        // preloadEntriesOnStart: true,
+        // clientSegmentCache: true,
+        // optimisticClientCache: true,
+        // appDocumentPreloading: true,
     },
 };
 
