@@ -80,6 +80,7 @@
     },
     "scripts": {
         "build": "next build",
+        "build:db": "drizzle-kit generate && drizzle-kit migrate && next build",
         "check": "next lint && tsc --noEmit",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
