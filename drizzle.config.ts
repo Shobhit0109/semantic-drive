@@ -3,9 +3,9 @@ import { env } from "~/env";
 
 export default {
     schema: "./src/server/db/schema.ts",
-    dialect: "sqlite",
+    dialect: "postgresql",
     dbCredentials: {
         url: env.DATABASE_URL,
     },
-    tablesFilter: ["xxxxx_*"],
+    tablesFilter: ["semantic-drive_*"],
 } satisfies Config;

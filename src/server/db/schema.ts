@@ -1,7 +1,7 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 import { sql } from "drizzle-orm";
-import { index, sqliteTableCreator } from "drizzle-orm/sqlite-core";
+import { index, pgTableCreator } from "drizzle-orm/pg-core";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -9,18 +9,20 @@ import { index, sqliteTableCreator } from "drizzle-orm/sqlite-core";
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = sqliteTableCreator((name) => `xxxxx_${name}`);
+export const createTable = pgTableCreator((name) => `semantic-drive_${name}`);
 
 export const posts = createTable(
     "post",
     (d) => ({
-        id: d.integer({ mode: "number" }).primaryKey({ autoIncrement: true }),
-        name: d.text({ length: 256 }),
+        id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+        name: d.varchar({ length: 256 }),
         createdAt: d
-            .integer({ mode: "timestamp" })
-            .default(sql`(unixepoch())`)
+            .timestamp({ withTimezone: true })
+            .default(sql`CURRENT_TIMESTAMP`)
             .notNull(),
-        updatedAt: d.integer({ mode: "timestamp" }).$onUpdate(() => new Date()),
+        updatedAt: d
+            .timestamp({ withTimezone: true })
+            .$onUpdate(() => new Date()),
     }),
     (t) => [index("name_idx").on(t.name)],
 );
