@@ -1,13 +1,20 @@
 import { createEnv } from "@t3-oss/env-nextjs";
 import { z } from "zod";
 
+
 export const env = createEnv({
     /**
      * Specify your server-side environment variables schema here. This way you can ensure the app
      * isn't built with invalid env vars.
      */
     server: {
-        DATABASE_URL: z.string().url(),
+        DATABASE_URL: z
+            .string()
+            .refine((v) => /^(postgres|postgresql):\/\/.+$/.test(v), {
+                message:
+                    "Invalid database URL - must start with postgres:// or postgresql://",
+            }),
+        // DATABASE_URL: z.string().url(),
         NODE_ENV: z
             .enum(["development", "test", "production"])
             .default("development"),

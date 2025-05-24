@@ -18,8 +18,6 @@ const geist = Geist({
 export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
-    console.log("Enviornment variables:", process.env);
-    console.log("Next.js version:", process.env.NEXT_VERSION);
     return (
         <html lang="en" className={`${geist.variable}`}>
             <body>
