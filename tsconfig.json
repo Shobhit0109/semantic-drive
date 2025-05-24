@@ -32,18 +32,11 @@
         /***** Paths & Base URL *****/
         "baseUrl": ".",
         "paths": {
-            "~/*": [
-                "src/*"
-            ], // shorter imports from src
-            "@components/*": [
-                "src/components/*"
-            ] // example additional alias
+            "~/*": ["src/*"], // shorter imports from src
+            "@components/*": ["src/components/*"] // example additional alias
         },
         /***** Type Roots & Declaration *****/
-        "typeRoots": [
-            "./types",
-            "./node_modules/@types"
-        ],
+        "typeRoots": ["./types", "./node_modules/@types"],
         "resolveJsonModule": true,
         /***** Others *****/
         "forceConsistentCasingInFileNames": true,
